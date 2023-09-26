@@ -1,5 +1,4 @@
 import { og } from "../../.."
-import Colors from "../../../common/colors"
 import { setPlayerWounded } from "../../../features/player-wounded"
 
 og.events.playerDeath((player) => {
@@ -30,8 +29,6 @@ og.events.playerSpawn((player) => {
         player.giveWeapon(weapon.model, weapon.ammo)
     }
     player.holdingWeapon = state.holdingWeapon
-
-    player.sendMessage("Ai murit intr-un mod ciudat. Pozitia si armele ti-au fost restituite, dar ar trebui sa dai relog.", Colors.Red)
 
     setPlayerWounded(player, "dead")
     player.deleteVariable("player-damage::state-before-death")

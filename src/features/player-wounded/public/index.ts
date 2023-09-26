@@ -1,6 +1,26 @@
 import { Player, VehicleSeats } from "open-godfather"
 import { setRandomWoundedAnimation, stopWoundedAnimation } from "../domain/animation"
 import { deleteWoundedLabel, setWoundedLabel } from "../domain/label"
+import { og } from "../../.."
+
+og.events.playerStartEnterVehicle((player) => {
+    if (isPlayerWounded(player)) {
+        player.clearAnimations()
+        player.setPosition(player.getPosition())
+    }
+})
+
+og.events.playerStartExitVehicle((player, vehicle) => {
+    if (isPlayerWounded(player)) {
+        const seat = player.vehicleSeat
+
+        player.clearAnimations()
+
+        if (seat !== undefined) {
+            player.putIntoVehicle(vehicle, seat)
+        }
+    }
+})
 
 export function setPlayerWounded(player: Player, mode: "living" | "dead") {
     player.setVariable("player-damage::wounded-mode", mode)
