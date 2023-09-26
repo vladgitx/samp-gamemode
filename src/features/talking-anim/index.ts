@@ -1,0 +1,1 @@
+export { playerTalkingAnim } from "./public"

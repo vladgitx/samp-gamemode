@@ -1,0 +1,1 @@
+export { setPlayerWounded, isPlayerWounded, revivePlayer } from "./public"
