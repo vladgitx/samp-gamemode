@@ -2,13 +2,6 @@ import { Player } from "open-godfather"
 import { og } from "../../.."
 import Colors from "../../../common/colors"
 
-og.events.playerDisconnect((player) => {
-    const label = player.getVariable("player-damage::label")
-    if (label?.exists) {
-        og.textLabels.destroy(label)
-    }
-})
-
 export function setWoundedLabel(player: Player) {
     if (player.getVariable("player-damage::label")) {
         return
