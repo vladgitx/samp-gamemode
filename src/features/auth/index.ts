@@ -48,11 +48,11 @@ export async function playerLogin(player: Player, time = 60, maxAttempts = 3, ca
                     if (++attempts >= maxAttempts) {
                         player.hideDialog()
         
-                        player.sendMessage("Ai gresit parola de 3 ori.", Colors.Red)
+                        player.sendMessage(`Ai gresit parola de ${maxAttempts} ori.`, Colors.Red)
                         player.kick()
                         return
                     }
-                    player.sendMessage(errorMessage(`Parola este incorecta. (${attempts}/3 incercari)`))
+                    player.sendMessage(errorMessage(`Parola este incorecta. (${attempts}/${maxAttempts} incercari)`))
                     attemptLogin(accountId, passwordHash, attempts)
                 }
             } catch (error) {
